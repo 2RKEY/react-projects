@@ -9,6 +9,7 @@ function App() {
   const [users, setUsers] = React.useState([]);
   const [invites, setInvites] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
+  const [success, setSuccess] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState('');
 
   React.useEffect(() => {
@@ -45,8 +46,16 @@ function App() {
     }
   };
 
+  const onClickSendInvites = () => {
+    setSuccess(true);
+  }
+
   return (
     <div className="App">
+      {
+        success ? (
+          <Success count={invites.length}/>
+        ) : (
       <Users 
         items={users}
         isLoading={isLoading} 
@@ -54,8 +63,9 @@ function App() {
         onChangeSearchValue={onChangeSearchValue}
         invites={invites}
         onClickInvite={onClickInvite}
+        onClickSendInvites={onClickSendInvites}
       />
-      {/* <Success /> */}
+      )}
     </div>
   );
 }
