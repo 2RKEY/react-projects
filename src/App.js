@@ -37,6 +37,14 @@ function App() {
     setSearchValue(event.target.value);
   };
 
+  const onClickInvite = (id) => {
+    if (invites.includes(id)) {
+      setInvites(perv => perv.filter(_id => _id !== id))
+    } else {
+      setInvites(perv => [...perv, id]);
+    }
+  };
+
   return (
     <div className="App">
       <Users 
@@ -44,6 +52,8 @@ function App() {
         isLoading={isLoading} 
         searchValue={searchValue}
         onChangeSearchValue={onChangeSearchValue}
+        invites={invites}
+        onClickInvite={onClickInvite}
       />
       {/* <Success /> */}
     </div>
